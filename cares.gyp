@@ -31,6 +31,7 @@
         'common.gypi',
         'include/ares.h',
         'include/ares_version.h',
+        'include/nameser.h',
         'src/ares_cancel.c',
         'src/ares__close_sockets.c',
         'src/ares_data.c',
@@ -94,7 +95,6 @@
         'src/inet_net_pton.h',
         'src/inet_ntop.c',
         'src/inet_ntop.h',
-        'src/nameser.h',
         'src/setup_once.h',
         'src/windows_port.c'
       ],
