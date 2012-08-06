@@ -99,6 +99,11 @@
         'src/windows_port.c'
       ],
       'conditions': [
+        [ 'library=="static_library"', {
+          'defines': [ 'CARES_STATICLIB' ]
+        }, {
+          'defines': [ 'CARES_BUILDING_LIBRARY' ]
+        }],
         [ 'OS=="win"', {
           'include_dirs': [ 'config/win32' ],
           'sources': [
