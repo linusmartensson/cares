@@ -125,10 +125,6 @@ src/.buildstamp:
 	mkdir -p $(dir $@)
 	touch $@
 
-ares_config.h:
-	mkdir -p include
-	cp $(SRCDIR)/config/$(ARES_CONFIG_OS)/ares_config.h include/
-
 libcares.a: $(OBJS)
 	$(AR) rcs $@ $^
 
@@ -136,9 +132,11 @@ libcares.$(SOEXT): override CFLAGS += -fPIC
 libcares.$(SOEXT): $(OBJS:%.o=%.pic.o)
 	$(CC) -shared -o $@ $^ $(LDFLAGS)
 
-src/%.o src/%.pic.o: src/%.c include/ares.h include/ares_version.h include/nameser.h ares_config.h src/.buildstamp
+src/%.o src/%.pic.o:  src/%.c include/ares.h include/ares_version.h \
+		include/nameser.h src/.buildstamp \
+		$(SRCDIR)/config/$(ARES_CONFIG_OS)/ares_config.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	$(RM) -f libcares.a libcares.$(SOEXT) src/*.o include/ares_config.h src/.buildstamp
+	$(RM) -f libcares.a libcares.$(SOEXT) src/*.o src/.buildstamp
