@@ -23,6 +23,7 @@ OS ?= $(shell sh -c 'uname -s | tr "[A-Z]" "[a-z]"')
 OBJS= \
 		src/ares_cancel.o \
 		src/ares__close_sockets.o \
+		src/ares_create_query.o \
 		src/ares_data.o \
 		src/ares_destroy.o \
 		src/ares_expand_name.o \
